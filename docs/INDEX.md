@@ -27,8 +27,9 @@ This folder contains the technical documentation, architecture decisions, sprint
 - ADR-002: MySQL + Flyway
 
 ### Sprint Notes
-- Sprint 1
-- Sprint 2
+- Sprint-01
+- Sprint-02
+- Sprint-03
 
 ### Interview Notes
 - Spring Boot
@@ -38,4 +39,11 @@ This folder contains the technical documentation, architecture decisions, sprint
 - Security
 
 ### Learning
-- Concepts learned while building FocusGuard
+- User Entity
+- User Repository
+- User Registration
+- Authentication
+
+### Engineering Journal
+- README
+- EJ-001 Git Directory Locking
