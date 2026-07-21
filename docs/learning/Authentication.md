@@ -146,13 +146,24 @@ This avoids revealing whether an email exists in the system.
 
 ---
 
-# Temporary JwtService
+# JwtService
 
-Today's implementation returns:
+The JwtService is responsible for generating signed JWTs after successful authentication.
 
-temporary-token-for-email
+Current implementation includes:
 
-This verifies the authentication flow before implementing real JWT generation.
+- Subject (email)
+- Issued At (iat)
+- Expiration Time (exp)
+- HMAC SHA signing using a secret key
+
+JWT Structure:
+
+Header.Payload.Signature
+
+The token is digitally signed so that it cannot be modified without the server's secret key.
+
+The signing key and expiration time are configured through application.properties.
 
 ---
 
@@ -180,8 +191,14 @@ Authorization
 
 # Key Learnings
 
-- Separate authentication from user management.
-- Never compare encrypted passwords manually.
-- Use PasswordEncoder.matches().
-- Return a consistent response structure.
-- Keep authentication endpoints public.
+- Authentication verifies a user's identity.
+- Authorization determines what an authenticated user is allowed to access.
+- Separate authentication logic from user management logic.
+- Passwords should always be stored as BCrypt hashes.
+- Never compare hashed passwords manually; use `PasswordEncoder.matches()`.
+- JWTs are digitally signed, not encrypted.
+- A JWT consists of a Header, Payload, and Signature.
+- JWT payloads are readable by anyone, but only the server can generate a valid signature using its secret key.
+- Never hardcode secret keys; store them in external configuration (and in production, use environment variables or a secrets manager).
+- Keep authentication endpoints (e.g., `/api/v1/auth/login`) publicly accessible while protecting business endpoints.
+- Return a consistent API response structure for easier client integration.

@@ -35,17 +35,24 @@ POST
 
 Returns
 
-- token
-- type
+- JWT Token
+- Token Type (Bearer)
 
-Token currently uses a temporary placeholder.
+JWT contains:
+
+- Subject (email)
+- Issued At
+- Expiration Time
+- Digital Signature
+
+Successfully verified using Postman.
 
 ---
 
 # Next Sprint
 
-Implement real JWT generation.
-
-Implement JWT validation filter.
-
-Secure protected endpoints.
+- Implement JWT validation.
+- Extract username from JWT.
+- Create JwtAuthenticationFilter.
+- Secure protected APIs.
+- Implement Authorization header validation.
